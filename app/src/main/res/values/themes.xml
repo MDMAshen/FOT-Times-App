@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.FOTTimesApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.FOT_Times_App" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        ...
     </style>
+
 
     <style name="Theme.FOTTimesApp" parent="Base.Theme.FOTTimesApp" />
 </resources>
