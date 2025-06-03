@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">FOT-Times-App</string>
+    <string name="app_name">FOT TIMES</string>
+    <string name="university_name">UNIVERSITY OF COLOMBO</string>
+    <string name="welcome_message">Welcome to FOT Times!</string>
 </resources>
