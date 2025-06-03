@@ -16,8 +16,8 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         new Handler().postDelayed(() -> {
-            // After splash, navigate to login screen (replace with your actual login activity)
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            // Navigate to MainActivity temporarily
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }, SPLASH_TIME);
