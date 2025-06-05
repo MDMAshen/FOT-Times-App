@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> loginUser());
 
-        // ✅ Navigate to SignupActivity
+        //  Navigate to SignupActivity
         signUpLink.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        // ✅ Block invalid Firebase key characters
+        //  Block invalid Firebase key characters
         if (username.contains(".") || username.contains("#") || username.contains("$")
                 || username.contains("[") || username.contains("]")) {
             Toast.makeText(this, "Username cannot contain '.', '#', '$', '[', or ']'", Toast.LENGTH_LONG).show();
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (password.equals(dbPassword)) {
                         Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-                        // ✅ Temporarily go to MainActivity
+                        //  Temporarily go to MainActivity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();

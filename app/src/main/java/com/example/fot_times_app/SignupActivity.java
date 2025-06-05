@@ -54,14 +54,14 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        // ✅ Prevent invalid Firebase key characters in username
+        //  Prevent invalid Firebase key characters in username
         if (username.contains(".") || username.contains("#") || username.contains("$")
                 || username.contains("[") || username.contains("]")) {
             Toast.makeText(this, "Username cannot contain '.', '#', '$', '[', or ']'", Toast.LENGTH_LONG).show();
             return;
         }
 
-        // ✅ Validate email format
+        //  Validate email format
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show();
             return;
@@ -72,7 +72,7 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        // ✅ Save to Firebase Realtime Database
+        //  Save to Firebase Realtime Database
         User user = new User(email, password);
         dbRef.child(username).setValue(user).addOnSuccessListener(unused -> {
             Toast.makeText(SignupActivity.this, "Signup successful!", Toast.LENGTH_SHORT).show();
