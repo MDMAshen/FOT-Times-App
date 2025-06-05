@@ -9,24 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FOT_Times_App">
-
-        <!-- SplashActivity is the launcher screen -->
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+        <!-- SplashActivity (LAUNCHER) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.FOT_Times_App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- MainActivity (placeholder until LoginActivity is ready) -->
+        </activity> <!-- LoginActivity (after Splash) -->
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Theme.FOT_Times_App" /> <!-- MainActivity (placeholder or home screen after login) -->
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.FOT_Times_App" />
-
-        <!-- You can later add SignupActivity and other screens here -->
     </application>
 
 </manifest>
