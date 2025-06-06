@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When selected -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#333344" /> <!-- dark gray ellipse -->
+            <corners android:radius="40dp" />
+        </shape>
+    </item>
+
+    <!-- When not selected -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+        </shape>
+    </item>
+</selector>

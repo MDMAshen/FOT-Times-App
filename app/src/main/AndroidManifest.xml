@@ -9,26 +9,43 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FOT_Times_App">
-        <activity
-            android:name=".SignupActivity"
-            android:exported="false" />
-        <!-- SplashActivity (LAUNCHER) -->
+
+        <!-- Splash screen (launcher) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.FOT_Times_App">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- LoginActivity (after Splash) -->
+        </activity>
+
+        <!-- Login screen (after splash) -->
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.FOT_Times_App" /> <!-- MainActivity (placeholder or home screen after login) -->
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
+
+        <!-- Signup screen -->
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
+
+        <!-- News screen (final home after login) -->
+        <activity
+            android:name=".NewsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
+
+        <!-- Optional: MainActivity (if still needed for testing or future use) -->
+        <!--
         <activity
             android:name=".MainActivity"
+            android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
-    </application>
+        -->
 
+    </application>
 </manifest>
