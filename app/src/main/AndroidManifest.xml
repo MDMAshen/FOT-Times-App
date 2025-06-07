@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fot_times_app">
 
@@ -10,7 +9,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FOT_Times_App">
 
-        <!-- Splash screen (launcher) -->
+        <activity
+            android:name=".NewsDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
+
+        <activity
+            android:name=".NewsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
+
+        <activity
+            android:name=".SignupActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -20,32 +36,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Login screen (after splash) -->
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false"
-            android:theme="@style/Theme.FOT_Times_App" />
-
-        <!-- Signup screen -->
-        <activity
-            android:name=".SignupActivity"
-            android:exported="false"
-            android:theme="@style/Theme.FOT_Times_App" />
-
-        <!-- News screen (final home after login) -->
-        <activity
-            android:name=".NewsActivity"
-            android:exported="false"
-            android:theme="@style/Theme.FOT_Times_App" />
-
-        <!-- Optional: MainActivity (if still needed for testing or future use) -->
-        <!--
-        <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.FOT_Times_App" />
-        -->
-
     </application>
 </manifest>

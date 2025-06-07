@@ -1,34 +1,29 @@
 package com.example.fot_times_app;
 
 public class TrendingItem {
-    private String image;
     private String title;
-
-    private int imageResId; //  Add this for local drawable reference
+    private String image;
+    private String description;
 
     public TrendingItem() {
         // Required for Firebase
     }
 
-    public TrendingItem(String image, String title) {
-        this.image = image;
+    public TrendingItem(String title, String image, String description) {
         this.title = title;
-    }
-
-    public String getImage() {
-        return image;
+        this.image = image;
+        this.description = description;
     }
 
     public String getTitle() {
         return title;
     }
 
-    //  Add this getter and setter for imageResId
-    public int getImageResId() {
-        return imageResId;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageResId(int imageResId) {
-        this.imageResId = imageResId;
+    public String getDescription() {
+        return description;
     }
 }
