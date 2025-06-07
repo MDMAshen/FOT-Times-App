@@ -1,11 +1,12 @@
 package com.example.fot_times_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,18 +56,20 @@ public class NewsActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_sports);
-
         bottomNav.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
-            if (id == R.id.nav_sports) return true;
+            if (item.getItemId() == R.id.nav_sports) return true;
             Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
             return true;
         });
 
-        findViewById(R.id.profileIcon).setOnClickListener(v ->
+        ImageView profileIcon = findViewById(R.id.profileIcon);
+        ImageView settingsIcon = findViewById(R.id.settingsIcon);
+
+        profileIcon.setOnClickListener(v ->
                 Toast.makeText(this, "Profile - Coming soon", Toast.LENGTH_SHORT).show());
-        findViewById(R.id.settingsIcon).setOnClickListener(v ->
-                Toast.makeText(this, "Settings - Coming soon", Toast.LENGTH_SHORT).show());
+
+        settingsIcon.setOnClickListener(v ->
+                startActivity(new Intent(NewsActivity.this, DeveloperInfoActivity.class)));
 
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -109,7 +112,7 @@ public class NewsActivity extends AppCompatActivity {
                     TrendingItem item = data.getValue(TrendingItem.class);
                     if (item != null && item.getImage() != null) {
                         int resId = getResources().getIdentifier(item.getImage(), "drawable", getPackageName());
-//                        item.setImageResId(resId);
+                        item.setImageResId(resId);
                         trendingList.add(item);
                     }
                 }

@@ -9,6 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FOT_Times_App">
 
+        <activity android:name=".DeveloperInfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
+
+
         <activity
             android:name=".NewsDetailActivity"
             android:exported="false"
