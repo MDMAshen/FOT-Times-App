@@ -1,11 +1,11 @@
 package com.example.fot_times_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,11 +32,16 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
     @Override
     public void onBindViewHolder(@NonNull TrendingViewHolder holder, int position) {
         TrendingItem item = trendingList.get(position);
-        int resId = context.getResources().getIdentifier(item.getImage(), "drawable", context.getPackageName());
-        holder.imageView.setImageResource(resId);
+        int imageResId = context.getResources().getIdentifier(item.getImage(), "drawable", context.getPackageName());
+        holder.trendingImage.setImageResource(imageResId);
 
-        holder.imageView.setOnClickListener(v ->
-                Toast.makeText(context, item.getTitle() + " - Coming soon", Toast.LENGTH_SHORT).show());
+        holder.trendingImage.setOnClickListener(v -> {
+            Intent intent = new Intent(context, NewsDetailActivity.class);
+            intent.putExtra("title", item.getTitle());
+            intent.putExtra("image", item.getImage());
+            intent.putExtra("description", item.getDescription());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -44,12 +49,12 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
         return trendingList.size();
     }
 
-    static class TrendingViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
+    public static class TrendingViewHolder extends RecyclerView.ViewHolder {
+        ImageView trendingImage;
 
         public TrendingViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.trendingCardImage);
+            trendingImage = itemView.findViewById(R.id.trendingCardImage);
         }
     }
 }

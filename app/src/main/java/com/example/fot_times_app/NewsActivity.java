@@ -21,10 +21,10 @@ import java.util.List;
 public class NewsActivity extends AppCompatActivity {
 
     RecyclerView recyclerViewNews, recyclerViewTrending;
-    NewsAdapter newsAdapter;
+    NewsAdapter adapter;
     TrendingAdapter trendingAdapter;
-    List<NewsItem> newsList = new ArrayList<>();
-    List<TrendingItem> trendingList = new ArrayList<>();
+    List<NewsItem> newsList;
+    List<TrendingItem> trendingList;
     EditText searchInput;
 
     DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("news");
@@ -36,25 +36,29 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news);
 
         recyclerViewNews = findViewById(R.id.recyclerViewNews);
-        recyclerViewNews.setLayoutManager(new LinearLayoutManager(this));
-        newsAdapter = new NewsAdapter(new ArrayList<>());
-        recyclerViewNews.setAdapter(newsAdapter);
-
         recyclerViewTrending = findViewById(R.id.recyclerViewTrending);
-        recyclerViewTrending.setLayoutManager(
-                new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewNews.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewTrending.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        searchInput = findViewById(R.id.searchInput);
+
+        newsList = new ArrayList<>();
+        trendingList = new ArrayList<>();
+
+        adapter = new NewsAdapter(new ArrayList<>());
+        recyclerViewNews.setAdapter(adapter);
+
         trendingAdapter = new TrendingAdapter(trendingList, this);
         recyclerViewTrending.setAdapter(trendingAdapter);
-
-        searchInput = findViewById(R.id.searchInput);
 
         loadNewsFromFirebase();
         loadTrendingFromFirebase();
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_sports);
+
         bottomNav.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_sports) return true;
+            int id = item.getItemId();
+            if (id == R.id.nav_sports) return true;
             Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
             return true;
         });
@@ -64,7 +68,6 @@ public class NewsActivity extends AppCompatActivity {
         findViewById(R.id.settingsIcon).setOnClickListener(v ->
                 Toast.makeText(this, "Settings - Coming soon", Toast.LENGTH_SHORT).show());
 
-        // 🔍 Live Search
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -87,7 +90,7 @@ public class NewsActivity extends AppCompatActivity {
                         newsList.add(item);
                     }
                 }
-                newsAdapter.updateList(newsList);
+                adapter.updateList(newsList);
             }
 
             @Override
@@ -98,15 +101,15 @@ public class NewsActivity extends AppCompatActivity {
     }
 
     private void loadTrendingFromFirebase() {
-        trendingRef.addValueEventListener(new ValueEventListener() {
+        trendingRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 trendingList.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     TrendingItem item = data.getValue(TrendingItem.class);
-                    if (item != null) {
-                        int imageId = getResources().getIdentifier(item.getImage(), "drawable", getPackageName());
-                        item.setImageResId(imageId);
+                    if (item != null && item.getImage() != null) {
+                        int resId = getResources().getIdentifier(item.getImage(), "drawable", getPackageName());
+//                        item.setImageResId(resId);
                         trendingList.add(item);
                     }
                 }
@@ -115,7 +118,7 @@ public class NewsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(NewsActivity.this, "Failed to load trending", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsActivity.this, "Failed to load trending news", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -128,6 +131,6 @@ public class NewsActivity extends AppCompatActivity {
                 filtered.add(item);
             }
         }
-        newsAdapter.updateList(filtered);
+        adapter.updateList(filtered);
     }
 }

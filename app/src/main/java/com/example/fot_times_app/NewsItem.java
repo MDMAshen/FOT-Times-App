@@ -4,25 +4,25 @@ public class NewsItem {
     private String title;
     private String summary;
     private String date;
-    private String image; // image filename from Firebase (e.g., "news_tech")
-    private int imageResId; // resolved resource ID for drawable (not stored in Firebase)
+    private String image;
+    private String description;
+    private int imageResId; // Not from Firebase, resolved at runtime
 
-    // Required default constructor for Firebase
     public NewsItem() {
+        // Required for Firebase
     }
 
-    // Constructor for Firebase parsing
-    public NewsItem(String title, String summary, String date, String image) {
+    public NewsItem(String title, String summary, String date, String image, String description) {
         this.title = title;
         this.summary = summary;
         this.date = date;
         this.image = image;
+        this.description = description;
     }
 
-    // Constructor for usage after resolving imageResId
-    public NewsItem(String title, String summary, String date, int imageResId) {
+    public NewsItem(String title, String description, String date, int imageResId) {
         this.title = title;
-        this.summary = summary;
+        this.description = description;
         this.date = date;
         this.imageResId = imageResId;
     }
@@ -41,6 +41,10 @@ public class NewsItem {
 
     public String getImage() {
         return image;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public int getImageResId() {
