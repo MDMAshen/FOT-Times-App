@@ -1,29 +1,40 @@
 package com.example.fot_times_app;
 
 public class TrendingItem {
-    private String title;
     private String image;
+    private String title;
     private String description;
 
+    // This field is not stored in Firebase, only used at runtime
+    private int imageResId;
+
+    // Required for Firebase
     public TrendingItem() {
-        // Required for Firebase
     }
 
-    public TrendingItem(String title, String image, String description) {
-        this.title = title;
+    public TrendingItem(String image, String title, String description) {
         this.image = image;
+        this.title = title;
         this.description = description;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getImage() {
         return image;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public int getImageResId() {
+        return imageResId;
+    }
+
+    public void setImageResId(int imageResId) {
+        this.imageResId = imageResId;
     }
 }

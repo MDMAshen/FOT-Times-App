@@ -2,4 +2,12 @@
     <string name="app_name">FOT TIMES</string>
     <string name="university_name">UNIVERSITY OF COLOMBO</string>
     <string name="welcome_message">Welcome to FOT Times!</string>
+<!--    <string name="developer_title"><u>Developer Information</u></string>-->
+    <string name="developer_title"><u>Developer Information</u></string>
+    <string name="developer_name"><b>Name :</b> M.D.M.Ashen</string>
+    <string name="developer_student"><b>Student No :</b> 2021t01195</string>
+    <string name="developer_statement"><b>Personal Statement :</b> Undergraduate | FOT | UOC</string>
+    <string name="developer_version"><b>Release Version :</b> v1.0</string>
+
+
 </resources>
