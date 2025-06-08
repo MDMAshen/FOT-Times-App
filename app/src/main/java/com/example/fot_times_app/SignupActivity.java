@@ -11,8 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.*;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -54,14 +53,12 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        //  Prevent invalid Firebase key characters in username
         if (username.contains(".") || username.contains("#") || username.contains("$")
                 || username.contains("[") || username.contains("]")) {
             Toast.makeText(this, "Username cannot contain '.', '#', '$', '[', or ']'", Toast.LENGTH_LONG).show();
             return;
         }
 
-        //  Validate email format
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show();
             return;
@@ -72,21 +69,33 @@ public class SignupActivity extends AppCompatActivity {
             return;
         }
 
-        //  Save to Firebase Realtime Database
-        User user = new User(email, password);
-        dbRef.child(username).setValue(user).addOnSuccessListener(unused -> {
-            Toast.makeText(SignupActivity.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+        //  Check if the username already exists
+        dbRef.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Toast.makeText(SignupActivity.this, "Username already exists. Please choose another.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Proceed with registration
+                    User user = new User(email, password);
+                    dbRef.child(username).setValue(user).addOnSuccessListener(unused -> {
+                        Toast.makeText(SignupActivity.this, "Signup successful!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                        finish();
+                    }).addOnFailureListener(e -> {
+                        Toast.makeText(SignupActivity.this, "Signup failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                }
+            }
 
-            // Navigate to login after successful registration
-            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-            startActivity(intent);
-            finish();
-        }).addOnFailureListener(e -> {
-            Toast.makeText(SignupActivity.this, "Signup failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SignupActivity.this, "Database error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
-    // Firebase data model
+    // Firebase user model
     public static class User {
         public String email;
         public String password;

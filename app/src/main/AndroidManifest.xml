@@ -9,29 +9,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FOT_Times_App">
 
-        <activity android:name=".DeveloperInfoActivity"
+        <!-- User Info Activity -->
+        <activity
+            android:name=".UserInfoActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
+        <!-- Developer Info Activity -->
+        <activity
+            android:name=".DeveloperInfoActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FOT_Times_App" />
 
+        <!-- News Detail Activity -->
         <activity
             android:name=".NewsDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
+        <!-- Main News Activity -->
         <activity
             android:name=".NewsActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
+        <!-- Signup Activity -->
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
 
+        <!-- Login Activity -->
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
 
+        <!-- Splash (Launcher) Activity -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -41,5 +53,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 </manifest>
