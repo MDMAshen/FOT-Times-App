@@ -67,10 +67,14 @@ public class LoginActivity extends AppCompatActivity {
                     if (password.equals(dbPassword)) {
                         Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
 
-                        // ✅ Navigate to NewsActivity
+
+                        //  Navigate to NewsActivity
+                        // Inside successful login section
                         Intent intent = new Intent(LoginActivity.this, NewsActivity.class);
+                        intent.putExtra("username", username);
                         startActivity(intent);
                         finish();
+
                     } else {
                         Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                     }

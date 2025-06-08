@@ -8,6 +8,8 @@
     <string name="developer_student"><b>Student No :</b> 2021t01195</string>
     <string name="developer_statement"><b>Personal Statement :</b> Undergraduate | FOT | UOC</string>
     <string name="developer_version"><b>Release Version :</b> v1.0</string>
+    <string name="user_info_header"><u>User Information</u></string>
+
 
 
 </resources>

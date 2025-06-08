@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
-import android.widget.Toast;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +28,8 @@ public class NewsActivity extends AppCompatActivity {
     List<TrendingItem> trendingList;
     EditText searchInput;
 
+    String loggedUsername;
+
     DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("news");
     DatabaseReference trendingRef = FirebaseDatabase.getInstance().getReference("trending");
 
@@ -35,6 +37,15 @@ public class NewsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+
+        //  Get logged-in username from intent
+        loggedUsername = getIntent().getStringExtra("username");
+        if (loggedUsername == null) {
+            Toast.makeText(this, "User not found. Returning to login.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+            return;
+        }
 
         recyclerViewNews = findViewById(R.id.recyclerViewNews);
         recyclerViewTrending = findViewById(R.id.recyclerViewTrending);
@@ -65,9 +76,14 @@ public class NewsActivity extends AppCompatActivity {
         ImageView profileIcon = findViewById(R.id.profileIcon);
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
 
-        profileIcon.setOnClickListener(v ->
-                Toast.makeText(this, "Profile - Coming soon", Toast.LENGTH_SHORT).show());
+        //  Navigate to User Info screen with username
+        profileIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(NewsActivity.this, UserInfoActivity.class);
+            intent.putExtra("username", loggedUsername);
+            startActivity(intent);
+        });
 
+        //  Navigate to Developer Info
         settingsIcon.setOnClickListener(v ->
                 startActivity(new Intent(NewsActivity.this, DeveloperInfoActivity.class)));
 
