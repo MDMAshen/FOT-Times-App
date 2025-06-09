@@ -38,7 +38,7 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
-        //  Get logged-in username from intent
+        //  Get logged-in username
         loggedUsername = getIntent().getStringExtra("username");
         if (loggedUsername == null) {
             Toast.makeText(this, "User not found. Returning to login.", Toast.LENGTH_SHORT).show();
@@ -65,28 +65,50 @@ public class NewsActivity extends AppCompatActivity {
         loadNewsFromFirebase();
         loadTrendingFromFirebase();
 
+        //  Bottom Navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setSelectedItemId(R.id.nav_sports);
         bottomNav.setOnItemSelectedListener(item -> {
-            if (item.getItemId() == R.id.nav_sports) return true;
-            Toast.makeText(this, "Coming soon", Toast.LENGTH_SHORT).show();
-            return true;
+            int id = item.getItemId();
+            if (id == R.id.nav_sports) {
+                return true; // Already on sports
+            } else if (id == R.id.nav_academic) {
+                Intent academicIntent = new Intent(this, AcademicActivity.class);
+                academicIntent.putExtra("username", loggedUsername);
+                //  Prevent stack buildup
+                academicIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(academicIntent);
+                finish();
+                return true;
+            } else if (id == R.id.nav_events) {
+                Intent eventsIntent = new Intent(this, EventsActivity.class);
+                eventsIntent.putExtra("username", loggedUsername);
+                eventsIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(eventsIntent);
+                finish();
+                return true;
+            }
+            return false;
         });
 
+        //  Top icons
         ImageView profileIcon = findViewById(R.id.profileIcon);
         ImageView settingsIcon = findViewById(R.id.settingsIcon);
 
-        //  Navigate to User Info screen with username
         profileIcon.setOnClickListener(v -> {
             Intent intent = new Intent(NewsActivity.this, UserInfoActivity.class);
             intent.putExtra("username", loggedUsername);
             startActivity(intent);
         });
 
-        //  Navigate to Developer Info
-        settingsIcon.setOnClickListener(v ->
-                startActivity(new Intent(NewsActivity.this, DeveloperInfoActivity.class)));
+        settingsIcon.setOnClickListener(v -> {
+            Intent intent = new Intent(NewsActivity.this, DeveloperInfoActivity.class);
+            intent.putExtra("username", loggedUsername);
+            intent.putExtra("source", "sports"); //  Pass current section
+            startActivity(intent);
+        });
 
+        //  Search functionality
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {

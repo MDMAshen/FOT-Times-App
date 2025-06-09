@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fot_times_app">
 
@@ -9,41 +10,51 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FOT_Times_App">
 
-        <!-- User Info Activity -->
+        <!-- 🔸 Academic Section -->
+        <activity
+            android:name=".AcademicActivity"
+            android:exported="false" />
+
+        <!-- 🔸 Events Section -->
+        <activity
+            android:name=".EventsActivity"
+            android:exported="false" />
+
+        <!-- 🔸 User Info -->
         <activity
             android:name=".UserInfoActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
-        <!-- Developer Info Activity -->
+        <!-- 🔸 Developer Info -->
         <activity
             android:name=".DeveloperInfoActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
-        <!-- News Detail Activity -->
+        <!-- 🔸 News Detail -->
         <activity
             android:name=".NewsDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
-        <!-- Main News Activity -->
+        <!-- 🔸 Sports (Main News) -->
         <activity
             android:name=".NewsActivity"
             android:exported="false"
             android:theme="@style/Theme.FOT_Times_App" />
 
-        <!-- Signup Activity -->
+        <!-- 🔸 Signup -->
         <activity
             android:name=".SignupActivity"
             android:exported="false" />
 
-        <!-- Login Activity -->
+        <!-- 🔸 Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
 
-        <!-- Splash (Launcher) Activity -->
+        <!-- 🔸 Splash (Launcher) -->
         <activity
             android:name=".SplashActivity"
             android:exported="true"
@@ -55,4 +66,5 @@
         </activity>
 
     </application>
+
 </manifest>

@@ -43,7 +43,7 @@
         android:id="@+id/searchInput"
         android:layout_width="0dp"
         android:layout_height="48dp"
-        android:hint="Search here..."
+        android:hint="Search academic news..."
         android:background="@drawable/search_bg"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="10dp"
@@ -55,12 +55,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Trending Title -->
+    <!-- Section Title -->
     <TextView
-        android:id="@+id/trendingTitle"
+        android:id="@+id/sectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trending News"
+        android:text="Academic News"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -68,39 +68,14 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="24dp" />
 
-    <!--  Trending RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTrending"
-        android:layout_width="0dp"
-        android:layout_height="160dp"
-        android:clipToPadding="false"
-        android:paddingEnd="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/trendingTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Today Title -->
-    <TextView
-        android:id="@+id/todayTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Today News"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/recyclerViewTrending"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp" />
-
-    <!-- Today News RecyclerView -->
+    <!--  RecyclerView renamed to match Java code -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewNews"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="0dp"
-        app:layout_constraintTop_toBottomOf="@id/todayTitle"
+        app:layout_constraintTop_toBottomOf="@id/sectionTitle"
         app:layout_constraintBottom_toTopOf="@id/bottomNav"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
