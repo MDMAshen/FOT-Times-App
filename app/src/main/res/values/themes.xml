@@ -1,9 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.FOTTimesApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.FOT_Times_App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">#070038</item>
+        <item name="colorPrimaryVariant">#1E1E2F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#FF6F00</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
     </style>
-
-    <style name="Theme.FOTTimesApp" parent="Base.Theme.FOTTimesApp" />
 </resources>
